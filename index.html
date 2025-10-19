@@ -3,71 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lively Translate - beta</title>
+    <title>LivelyTranslate</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div id="splash-screen">
-        <h1 id="splash-text">Lively translate languages <span class="green-text">accurately.</span></h1>
-    </div>
-
-    <div id="main-content" class="hidden">
-        <header>
-            <h1 class="website-title">Lively Translate - beta</h1>
-            <nav class="main-nav">
-                <button class="nav-button active" data-section="translate">Translate</button>
-                <button class="nav-button" data-section="notes">Notes</button>
-            </nav>
+    <div class="container">
+        <header class="tabs-header">
+            <button class="tab-button active">Translate text <span class="language-count">35+ languages</span></button>
+            <button class="tab-button notes-tab">notes</button>
+            <span class="notes-description">Save your notes here.</span>
         </header>
 
-        <div id="translate-section" class="content-section active">
-            
-            <div class="translation-controls">
-                <div class="lang-selector-container">
-                    <label>Source Language</label>
-                    <select id="left-language" disabled>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-                
-                <button id="swap-button" title="Swap Languages">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="1" y1="12" x2="23" y2="12"></line>
-                        <polyline points="15 5 22 12 15 19"></polyline>
-                        <polyline points="9 5 2 12 9 19"></polyline>
-                    </svg>
-                </button>
-
-                <div class="lang-selector-container">
-                    <label id="right-lang-label">Target Language</label>
-                    <select id="right-language">
-                        </select>
-                </div>
-            </div>
-            
-            <div class="translation-area">
-                <textarea id="source-text" placeholder="Type to translate..." oninput="livelyTranslate.detectAndTranslate()"></textarea>
-                <div id="target-text"></div>
+        <main class="translation-area">
+            <div class="language-selectors">
+                <select id="source-lang">
+                    <option value="auto">Detect Language</option>
+                    <option value="en" selected>English</option>
+                    <option value="es">Spanish</option>
+                    <option value="all">All Languages</option>
+                </select>
+                <div class="swap-icon" aria-label="Swap languages">⇌</div>
+                <select id="target-lang">
+                    <option value="es" selected>Spanish</option>
+                    <option value="en">English</option>
+                    <option value="all">All Languages</option>
+                </select>
             </div>
 
-            <div class="footer-bar">
-                <p class="document-info">Drag and drop to translate PDF, Word (.docx), and PowerPoint (.pptx) files with our document translator.</p>
-                <div class="powered-by">
-                    Powered by <span class="lively-box">livelytranslate.</span>
+            <div class="text-areas-container">
+                <div class="source-area">
+                    <textarea id="source-text" placeholder="Type to translate." oninput="livelyTranslate()"></textarea>
+                    <p class="file-prompt">Drag and drop to translate PDF, Word (.docx), and PowerPoint (.pptx) files with our document translator.</p>
+                </div>
+                <div class="target-area">
+                    <div id="target-text" aria-live="polite"></div>
+                    <button id="translate-btn">Translate</button>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <div id="notes-section" class="content-section hidden">
-            <div class="notes-prompt">
-                <p>In order to use notes from livelytranslate please create account.</p>
-                <a href="/register" class="create-account-button">Create account.</a>
+        <aside class="sidebar">
+            <div class="editing-tools">
+                <h3>Editing tools</h3>
+                <div class="tool-item">
+                    <span>Formality</span>
+                    <span class="pro-tag">Pro</span>
+                </div>
+                <div class="tool-item">
+                    <span>Clarify</span>
+                    <span class="pro-tag">Pro</span>
+                </div>
             </div>
+
+            <div class="customizations">
+                <h3>Customizations</h3>
+                <div class="tool-item">
+                    <span>Glossaries</span>
+                    <span class="none-select">None set →</span>
+                </div>
+                <div class="tool-item">
+                    <span>Style rules</span>
+                    <span class="pro-tag">Pro</span>
+                </div>
+            </div>
+
+            <div class="powered-by">
+                <h3>Powered by</h3>
+                <button class="lively-translate-btn" disabled>powered by lively translate</button>
+            </div>
+        </aside>
+
+        <div class="dictionary">
+            <h4>Dictionary</h4>
+            <p>Click on a word to look it up.</p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
