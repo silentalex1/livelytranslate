@@ -1,30 +1,38 @@
-/* Basic Reset and Fonts */
+:root {
+    --primary-green: #10B981;
+    --dark-text: #1F2937;
+    --medium-text: #4B5563;
+    --light-gray: #E5E7EB;
+    --off-white: #F9FAFB;
+    --white: #FFFFFF;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: #f4f7fa; /* Light background for the main UI */
-    color: #333;
-    overflow-x: hidden; /* Prevent horizontal scroll from splash animation */
+    background-color: var(--off-white);
+    color: var(--dark-text);
+    overflow-x: hidden;
 }
 
-/* --- SPLASH SCREEN STYLES --- */
+/* SPLASH SCREEN */
 #splash-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: var(--dark-text);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: transform 1s ease-in-out;
+    transition: transform 1s cubic-bezier(0.8, 0, 1, 1);
 }
 
 #splash-screen.slide-up {
@@ -32,11 +40,12 @@ body {
 }
 
 #splash-text {
-    color: white;
-    font-size: 3em;
+    color: var(--white);
+    font-size: 3.5em;
     font-weight: 700;
-    opacity: 0; /* Starts hidden */
+    opacity: 0;
     transition: opacity 1s ease-in-out;
+    letter-spacing: -0.05em;
 }
 
 #splash-text.fade-in {
@@ -44,15 +53,15 @@ body {
 }
 
 .green-text {
-    color: #2ECC71; /* A nice, vibrant green */
+    color: var(--primary-green);
 }
 
-/* --- MAIN CONTENT STYLES --- */
+/* MAIN CONTENT */
 #main-content {
-    padding: 20px;
+    padding: 30px 20px;
     opacity: 0;
-    transition: opacity 0.5s ease-in;
-    max-width: 1200px;
+    transition: opacity 0.5s ease-in 0.5s;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -66,171 +75,205 @@ body {
 
 /* Header and Navigation */
 header {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: 15px;
+}
+
+.website-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--dark-text);
 }
 
 .nav-button {
     background: none;
     border: none;
-    padding: 10px 15px;
-    margin-right: 10px;
+    padding: 10px 20px;
+    margin-left: 10px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 500;
-    color: #777;
+    color: var(--medium-text);
     border-bottom: 3px solid transparent;
     transition: color 0.2s, border-bottom 0.2s;
 }
 
 .nav-button.active {
-    color: #333;
-    border-bottom: 3px solid #2ECC71;
+    color: var(--dark-text);
+    border-bottom: 3px solid var(--primary-green);
     font-weight: 700;
 }
 
-/* Translation UI Layout */
+/* Content Sections */
 .content-section {
-    background-color: white;
+    background-color: var(--white);
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* Translation Controls */
 .translation-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 25px;
     padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.lang-selector-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+
+.lang-selector-container label {
+    font-size: 0.85em;
+    color: var(--medium-text);
+    margin-bottom: 5px;
 }
 
 .translation-controls select {
-    flex-grow: 1;
     border: none;
-    padding: 10px;
-    font-size: 1.1em;
+    padding: 5px 0;
+    font-size: 1.2em;
+    font-weight: 500;
     cursor: pointer;
     background: none;
+    color: var(--dark-text);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
-#left-language {
-    text-align: left;
-}
-
-#right-language {
-    text-align: right;
-}
-
 #swap-button {
-    background: none;
-    border: 1px solid #ccc;
+    background: var(--off-white);
+    border: 1px solid var(--light-gray);
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: #555;
+    color: var(--medium-text);
     margin: 0 15px;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
 }
 
 #swap-button:hover {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--light-gray);
+    color: var(--dark-text);
+    transform: rotate(5deg);
 }
 
+#swap-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Text Areas */
 .translation-area {
     display: flex;
     gap: 20px;
+    min-height: 300px;
 }
 
 #source-text, #target-text {
     flex: 1;
-    min-height: 250px;
-    padding: 15px;
-    font-size: 1.2em;
-    border: 1px solid #e0e0e0;
+    min-height: 100%;
+    padding: 20px;
+    font-size: 1.15em;
+    border: 1px solid var(--light-gray);
     border-radius: 8px;
     resize: none;
-    overflow-y: auto;
-}
-
-#source-text {
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.6;
 }
 
 #source-text:focus {
-    border-color: #2ECC71;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
 #target-text {
-    background-color: #f9f9f9;
-    color: #555;
+    background-color: var(--off-white);
+    color: var(--medium-text);
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-.document-translate {
-    margin-top: 20px;
+/* Footer Bar */
+.footer-bar {
+    margin-top: 25px;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--light-gray);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9em;
-    color: #777;
+}
+
+.document-info {
+    color: var(--medium-text);
 }
 
 .powered-by {
     display: flex;
     align-items: center;
-    color: #777;
+    color: var(--medium-text);
     font-size: 1em;
 }
 
 .lively-box {
-    background-color: #f0f0f0;
-    padding: 5px 10px;
-    margin-left: 5px;
+    background-color: var(--light-gray);
+    padding: 4px 10px;
+    margin-left: 8px;
     border-radius: 6px;
     font-weight: 700;
-    color: #333;
+    color: var(--dark-text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* --- NOTES SECTION STYLES --- */
+/* NOTES SECTION */
 #notes-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
+    min-height: 350px;
     text-align: center;
+    padding: 50px;
 }
 
-.notes-prompt h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 25px;
+.notes-prompt p {
+    font-size: 1.3em;
+    color: var(--dark-text);
+    margin-bottom: 30px;
+    font-weight: 500;
 }
 
 .create-account-button {
     text-decoration: none;
-    background-color: #2ECC71;
-    color: white;
-    padding: 12px 25px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 12px 30px;
     border-radius: 8px;
     font-size: 1.1em;
     font-weight: 500;
     transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
     display: inline-block;
 }
 
 .create-account-button:hover {
-    background-color: #28b463;
-    transform: translateY(-1px);
+    background-color: #0d966d;
+    transform: translateY(-2px);
 }
