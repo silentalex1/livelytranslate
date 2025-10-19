@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lively Translate - beta</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,31 +15,45 @@
 
     <div id="main-content" class="hidden">
         <header>
-            <nav>
+            <h1 class="website-title">Lively Translate - beta</h1>
+            <nav class="main-nav">
                 <button class="nav-button active" data-section="translate">Translate</button>
                 <button class="nav-button" data-section="notes">Notes</button>
             </nav>
         </header>
 
         <div id="translate-section" class="content-section active">
+            
             <div class="translation-controls">
-                <select id="left-language" disabled>
-                    <option value="en">English</option>
-                </select>
-                <button id="swap-button">↔</button>
-                <select id="right-language">
-                    <option value="es" selected>Spanish</option>
-                    <option value="auto">Detect language</option>
+                <div class="lang-selector-container">
+                    <label>Source Language</label>
+                    <select id="left-language" disabled>
+                        <option value="en">English</option>
                     </select>
+                </div>
+                
+                <button id="swap-button" title="Swap Languages">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="1" y1="12" x2="23" y2="12"></line>
+                        <polyline points="15 5 22 12 15 19"></polyline>
+                        <polyline points="9 5 2 12 9 19"></polyline>
+                    </svg>
+                </button>
+
+                <div class="lang-selector-container">
+                    <label id="right-lang-label">Target Language</label>
+                    <select id="right-language">
+                        </select>
+                </div>
             </div>
             
             <div class="translation-area">
-                <textarea id="source-text" placeholder="Type to translate." oninput="livelyTranslate.detectAndTranslate()"></textarea>
+                <textarea id="source-text" placeholder="Type to translate..." oninput="livelyTranslate.detectAndTranslate()"></textarea>
                 <div id="target-text"></div>
             </div>
 
-            <div class="document-translate">
-                <p>Drag and drop to translate PDF, Word (.docx), and PowerPoint (.pptx) files with our document translator.</p>
+            <div class="footer-bar">
+                <p class="document-info">Drag and drop to translate PDF, Word (.docx), and PowerPoint (.pptx) files with our document translator.</p>
                 <div class="powered-by">
                     Powered by <span class="lively-box">livelytranslate.</span>
                 </div>
@@ -48,7 +62,7 @@
 
         <div id="notes-section" class="content-section hidden">
             <div class="notes-prompt">
-                <h2>In order to use notes from livelytranslate please create account.</h2>
+                <p>In order to use notes from livelytranslate please create account.</p>
                 <a href="/register" class="create-account-button">Create account.</a>
             </div>
         </div>
