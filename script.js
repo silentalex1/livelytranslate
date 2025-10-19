@@ -2,7 +2,71 @@ const livelyTranslate = (function() {
 
     const splashScreen = document.getElementById('splash-screen');
     const splashText = document.getElementById('splash-text');
-    const mainContent = document.getElementById('main-content');
+    const mainContent = document.getElementById('main-content');adocument.addEventListener('DOMContentLoaded', () => {
+    const sourceTextarea = document.getElementById('source-text');
+    const targetDiv = document.getElementById('target-text');
+    const swapIcon = document.querySelector('.swap-icon');
+    const sourceLangSelect = document.getElementById('source-lang');
+    const targetLangSelect = document.getElementById('target-lang');
+    const translateButton = document.getElementById('translate-btn');
+
+    window.livelyTranslate = () => {
+        const textToTranslate = sourceTextarea.value.trim();
+
+        if (textToTranslate.length === 0) {
+            targetDiv.textContent = '';
+            return;
+        }
+
+        const sourceLang = sourceLangSelect.value;
+        const targetLang = targetLangSelect.value;
+
+        // THIS IS THE POINT WHERE A REAL-TIME API CALL WOULD OCCUR.
+        // For a live, accurate, and non-simulated translation,
+        // you must use a powerful external translation service here.
+        
+        // Example structure for a future implementation:
+        /*
+        fetch('YOUR_TRANSLATION_API_ENDPOINT', {
+            method: 'POST',
+            body: JSON.stringify({ 
+                text: textToTranslate, 
+                source_lang: sourceLang, 
+                target_lang: targetLang 
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            targetDiv.textContent = data.translatedText;
+        })
+        .catch(error => {
+            console.error('Translation failed:', error);
+            targetDiv.textContent = 'Translation service unavailable.';
+        });
+        */
+
+        // Since no API is connected, the output remains blank.
+        targetDiv.textContent = '';
+    };
+
+    translateButton.addEventListener('click', livelyTranslate);
+
+    swapIcon.addEventListener('click', () => {
+        const sourceVal = sourceLangSelect.value;
+        const targetVal = targetLangSelect.value;
+
+        if (targetVal === 'auto') {
+            sourceLangSelect.value = sourceVal;
+        } else {
+            sourceLangSelect.value = targetVal;
+        }
+        
+        targetLangSelect.value = sourceVal;
+        
+        livelyTranslate();
+    });
+});
     const navButtons = document.querySelectorAll('.nav-button');
     const sections = document.querySelectorAll('.content-section');
     const sourceText = document.getElementById('source-text');
