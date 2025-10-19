@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lively Translate - beta</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <div id="splash-screen">
+        <h1 id="splash-text">Lively translate languages <span class="green-text">accurately.</span></h1>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <header>
+            <nav>
+                <button class="nav-button active" data-section="translate">Translate</button>
+                <button class="nav-button" data-section="notes">Notes</button>
+            </nav>
+        </header>
+
+        <div id="translate-section" class="content-section active">
+            <div class="translation-controls">
+                <select id="left-language" disabled>
+                    <option value="en">English</option>
+                </select>
+                <button id="swap-button">↔</button>
+                <select id="right-language">
+                    <option value="es" selected>Spanish</option>
+                    <option value="auto">Detect language</option>
+                    </select>
+            </div>
+            
+            <div class="translation-area">
+                <textarea id="source-text" placeholder="Type to translate." oninput="livelyTranslate.detectAndTranslate()"></textarea>
+                <div id="target-text"></div>
+            </div>
+
+            <div class="document-translate">
+                <p>Drag and drop to translate PDF, Word (.docx), and PowerPoint (.pptx) files with our document translator.</p>
+                <div class="powered-by">
+                    Powered by <span class="lively-box">livelytranslate.</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="notes-section" class="content-section hidden">
+            <div class="notes-prompt">
+                <h2>In order to use notes from livelytranslate please create account.</h2>
+                <a href="/register" class="create-account-button">Create account.</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
